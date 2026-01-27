@@ -2,11 +2,140 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Портфолио — Ангелина</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <h1>Привет! Я Ангелина</h1>
-  <p>Сайт портфолио в процессе разработки...</p>
-  <p>Это тестовое сообщение — workflow должен запуститься!</p>
+
+  <!-- Навигация -->
+  <nav class="navbar">
+    <button class="nav-btn" onclick="showSection('home')">Главная</button>
+    <button class="nav-btn" onclick="showSection('skills')">Навыки</button>
+    <button class="nav-btn" onclick="showSection('experience')">Опыт</button>
+  </nav>
+
+  <!-- Контейнер секций -->
+  <main class="sections-container">
+
+    <!-- === Главная === -->
+    <section id="home" class="section active">
+      <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div>
+      </div>
+
+      <img src="assets/avatar.png" alt="Аватар" class="avatar">
+      <h2>Привет! Я Ангелина</h2>
+      <p>Frontend-разработчик | UI-дизайнер</p>
+      <button class="btn" onclick="showSection('skills')">Смотреть навыки</button>
+
+      <div class="lights-wrapper">
+        <div class="lights left">
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+          <div class="light blue"></div><div class="light aqua"></div><div class="light yellow"></div>
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+          <div class="light blue"></div><div class="light aqua"></div><div class="light yellow"></div>
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+        </div>
+        <div class="lights right">
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+          <div class="light blue"></div><div class="light aqua"></div><div class="light yellow"></div>
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+          <div class="light blue"></div><div class="light aqua"></div><div class="light yellow"></div>
+          <div class="light red"></div><div class="light green"></div><div class="light pink"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- === Навыки === -->
+    <section id="skills" class="section">
+      <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div>
+      </div>
+
+      <h2>Мои навыки</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>UI/UX-дизайн</h3>
+          <div class="skill-tags">
+            <span>Figma</span><span>Адаптивный дизайн</span><span>Прототипирование</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Разработка фронтенда</h3>
+          <div class="skill-tags">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Творческие навыки</h3>
+          <div class="skill-tags">
+            <span>Анимация UI</span><span>SVG</span><span>Моушн-графика</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- === Опыт === -->
+    <section id="experience" class="section">
+      <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
+        <div class="snowflake">•</div><div class="snowflake">•</div>
+      </div>
+
+      <h2>Профессиональная карьера</h2>
+
+      <div class="experience-cards">
+        <div class="experience-card">
+          <h3>Frontend-разработчик</h3>
+          <p class="company">Freelance</p>
+          <p class="period">2024 — н.в.</p>
+          <div class="tech-tags">
+            <span>HTML5</span><span>CSS3</span><span>JS</span><span>React</span>
+          </div>
+          <p class="description">Разработка адаптивных сайтов с акцентом на UX.</p>
+        </div>
+        <div class="experience-card">
+          <h3>UI/UX-дизайнер</h3>
+          <p class="company">Учебные проекты</p>
+          <p class="period">2023 — 2024</p>
+          <div class="tech-tags">
+            <span>Figma</span><span>Wireframing</span><span>Прототипы</span>
+          </div>
+          <p class="description">Создание интерфейсов и юзабилити-тесты.</p>
+        </div>
+        <div class="experience-card">
+          <h3>Веб-разработчик</h3>
+          <p class="company">IT-стажировка</p>
+          <p class="period">2022 — 2023</p>
+          <div class="tech-tags">
+            <span>HTML</span><span>CSS</span><span>Git</span>
+          </div>
+          <p class="description">Верстка по макетам и командная разработка.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
