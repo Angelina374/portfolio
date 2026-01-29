@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
   <!-- Навигация -->
   <nav class="navbar">
     <button class="nav-btn" onclick="showSection('home')">Главная</button>
@@ -55,7 +54,43 @@
 
     <!-- === Навыки === -->
     <section id="skills" class="section">
+   <!-- Ёлка слева -->
+<div class="tree left">
+  <div class="star"></div>
+  <div class="layer layer1"></div>
+  <div class="layer layer2"></div>
+  <div class="layer layer3"></div>
+  <div class="lights">
+    <div class="light" style="--i:1; --c:red; top:100px; left:90px;"></div>
+    <div class="light" style="--i:2; --c:gold; top:125px; left:120px;"></div>
+    <div class="light" style="--i:3; --c:blue; top:150px; left:60px;"></div>
+    <div class="light" style="--i:4; --c:rgb(150, 229, 251); top:180px; left:110px;"></div>
+    <div class="light" style="--i:5; --c:rgb(227, 142, 255); top:200px; left:60px;"></div>
+    <div class="light" style="--i:6; --c:rgb(86, 243, 102); top:220px; left:90px;"></div>
+    <div class="light" style="--i:7; --c:rgb(255, 255, 255); top:240px; left:150px;"></div>
+    <div class="light" style="--i:8; --c:rgb(248, 197, 56); top:247px; left:40px;"></div>
+  </div>
+</div>
+<!-- Ёлка справа -->
+<div class="tree right">
+  <div class="star"></div>
+  <div class="layer layer1"></div>
+  <div class="layer layer2"></div>
+  <div class="layer layer3"></div>
+  <div class="lights">
+    <div class="light" style="--i:1; --c:red; top:100px; left:90px;"></div>
+    <div class="light" style="--i:2; --c:gold; top:125px; left:120px;"></div>
+    <div class="light" style="--i:3; --c:blue; top:150px; left:60px;"></div>
+    <div class="light" style="--i:4; --c:rgb(150, 229, 251); top:180px; left:110px;"></div>
+    <div class="light" style="--i:5; --c:rgb(227, 142, 255); top:200px; left:60px;"></div>
+    <div class="light" style="--i:6; --c:rgb(86, 243, 102); top:220px; left:90px;"></div>
+    <div class="light" style="--i:7; --c:rgb(255, 255, 255); top:240px; left:150px;"></div>
+    <div class="light" style="--i:8; --c:rgb(248, 197, 56); top:247px; left:40px;"></div>
+  </div>
+</div>
+               <!-- снег -->
       <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
         <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
         <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
         <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
@@ -65,8 +100,19 @@
         <div class="snowflake">•</div><div class="snowflake">•</div>
       </div>
 
-      <h2>Мои навыки</h2>
+ <ul class="lightrope">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
 
+  <ul class="lightrope bottom">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
+
+      <h2>Мои навыки</h2>
       <div class="skills-grid">
         <div class="skill-card">
           <h3>UI/UX-дизайн</h3>
@@ -102,7 +148,17 @@
       </div>
 
       <h2>Профессиональная карьера</h2>
+  <ul class="lightrope">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
 
+  <ul class="lightrope bottom">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
       <div class="experience-cards">
         <div class="experience-card">
           <h3>Frontend-разработчик</h3>
@@ -134,8 +190,9 @@
       </div>
     </section>
 
-  </main>
 
+
+  </main>
   <script src="js/script.js"></script>
 </body>
 </html>
