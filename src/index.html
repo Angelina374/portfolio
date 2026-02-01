@@ -12,25 +12,19 @@
     <button class="nav-btn" onclick="showSection('home')">Главная</button>
     <button class="nav-btn" onclick="showSection('skills')">Навыки</button>
     <button class="nav-btn" onclick="showSection('experience')">Опыт</button>
+    <button class="nav-btn" onclick="showSection('education')">Образование</button>
+    <button class="nav-btn" onclick="showSection('contact')">Контакты</button>
   </nav>
+
+ <div class="snowflakes" aria-hidden="true"></div>
 
   <!-- Контейнер секций -->
   <main class="sections-container">
 
     <!-- === Главная === -->
     <section id="home" class="section active">
-      <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div>
-      </div>
-
       <img src="assets/avatar.png" alt="Аватар" class="avatar">
-      <h2>Привет! Я Ангелина</h2>
+    <h2 class="neon-text">Привет! Я Ангелина</h2>
       <p>Frontend-разработчик | UI-дизайнер</p>
       <button class="btn" onclick="showSection('skills')">Смотреть навыки</button>
 
@@ -54,7 +48,7 @@
 
     <!-- === Навыки === -->
     <section id="skills" class="section">
-   <!-- Ёлка слева -->
+<!-- Ёлка слева -->
 <div class="tree left">
   <div class="star"></div>
   <div class="layer layer1"></div>
@@ -88,17 +82,6 @@
     <div class="light" style="--i:8; --c:rgb(248, 197, 56); top:247px; left:40px;"></div>
   </div>
 </div>
-               <!-- снег -->
-      <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div>
-      </div>
 
  <ul class="lightrope">
     <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
@@ -137,15 +120,6 @@
 
     <!-- === Опыт === -->
     <section id="experience" class="section">
-      <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div><div class="snowflake">•</div>
-        <div class="snowflake">•</div><div class="snowflake">•</div>
-      </div>
 
       <h2>Профессиональная карьера</h2>
   <ul class="lightrope">
@@ -159,16 +133,16 @@
     <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
     <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
   </ul>
-      <div class="experience-cards">
-        <div class="experience-card">
-          <h3>Frontend-разработчик</h3>
-          <p class="company">Freelance</p>
-          <p class="period">2024 — н.в.</p>
-          <div class="tech-tags">
-            <span>HTML5</span><span>CSS3</span><span>JS</span><span>React</span>
-          </div>
-          <p class="description">Разработка адаптивных сайтов с акцентом на UX.</p>
-        </div>
+    <div class="experience-cards">
+    <div class="experience-card">
+    <h3>Frontend-разработчик</h3>
+    <p class="company">Freelance</p>
+    <p class="period">2024 — н.в.</p>
+    <div class="tech-tags">
+      <span>HTML5</span><span>CSS3</span><span>JS</span><span>React</span>
+    </div>
+    <p class="description">Разработка адаптивных сайтов с акцентом на UX.</p>
+  </div>
         <div class="experience-card">
           <h3>UI/UX-дизайнер</h3>
           <p class="company">Учебные проекты</p>
@@ -178,6 +152,7 @@
           </div>
           <p class="description">Создание интерфейсов и юзабилити-тесты.</p>
         </div>
+
         <div class="experience-card">
           <h3>Веб-разработчик</h3>
           <p class="company">IT-стажировка</p>
@@ -187,12 +162,106 @@
           </div>
           <p class="description">Верстка по макетам и командная разработка.</p>
         </div>
-      </div>
+  </div>
     </section>
 
+<!-- === Секция: Обучение === -->
+<section id="education" class="section">
 
+  <h2>Образование</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Университет ПГУ</h3>
+        <p class="degree">Бакалавриат, Прикладная информатика</p>
+        <p class="period">2020 — 2024</p>
+        <p class="description">
+          Основы программирования, веб-разработка. Участие в хакатонах и студенческих проектах.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Курс «Быстрый старт веб-дизайн»</h3>
+        <p class="degree">Веб-специалист</p>
+        <p class="period">2024 — 2025</p>
+        <p class="description">
+          Глубокое изучение Figma, Adobe Photoshop, Sketch. Создание 10+ проектов с адаптивным дизайном и анимациями.
+        </p>
+      </div>
+    </div>
+  </div>
+
+ <!-- правая: круг -->
+<div class="decoration right">
+  <div class="plane main">
+    <div class="shape circle"></div>
+    <div class="shape circle"></div>
+    <div class="shape circle"></div>
+    <div class="shape circle"></div>
+    <div class="shape circle"></div>
+  </div>
+</div>
+
+<!-- левая: квадрат -->
+<div class="decoration left">
+  <div class="plane main">
+    <div class="shape square"></div>
+    <div class="shape square"></div>
+    <div class="shape square"></div>
+    <div class="shape square"></div>
+    <div class="shape square"></div>
+  </div>
+</div>
+</section>
+
+        <!-- контакты -->
+<section id="contact" class="section">
+  <div class="contact-content">
+  <div class="contact-left">
+  <h2>Связаться со мной</h2>
+  <p class="subtitle">Есть вопрос или хотите поработать вместе? Напишите мне!</p>
+
+   <div class="contact-info">
+        <div class="info-item">
+          <div class="icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <p>geliaCS@gmail.com</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon">📍</div>
+          <div>
+            <strong>Location</strong>
+            <p>Нижний Новгород, Россия</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon">📱</div>
+          <div>
+            <strong>Telegram</strong>
+            <p>@angellina_CS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- форма в одном блоке -->
+    <div class="form-right">
+      <input type="text" placeholder="Ваше имя" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Тема">
+      <textarea placeholder="Ваше сообщение..." rows="5" required></textarea>
+      <button type="submit" class="send-btn">Отправить сообщение →</button>
+    </div>
+  </div>
+</section>
 
   </main>
+
   <script src="js/script.js"></script>
 </body>
 </html>

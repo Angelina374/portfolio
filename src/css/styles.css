@@ -39,8 +39,43 @@ body {
 }
 
 .nav-btn:hover {
-  background: #8B4513;
+  background: #009B95;
   color: white;
+}
+/* === Снег === */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* поверх фона, но под контентом */
+}
+
+.snowflake {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--opacity, 0.6);
+  }
+  90% {
+    opacity: var(--opacity, 0.6);
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--offset, 0));
+    opacity: 0;
+  }
 }
 
 /* Контейнер секций */
@@ -71,7 +106,7 @@ body {
 
 /* === Единый заголовок для всех секций === */
 .section > h2 {
-  margin-top: 10%; /* ← ключевое значение: расстояние от меню */
+  margin-top: 11%; /* ← ключевое значение: расстояние от меню */
   margin-bottom: 2rem;
   font-size: 2.2rem;
   font-weight: 700;
@@ -82,7 +117,7 @@ body {
 
 /* === Главная === */
 #home {
-  background: linear-gradient(135deg, #8B4513, #CD853F);
+ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   color: white;
   overflow: hidden;
   position: relative;
@@ -141,6 +176,37 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
+/* === Неоновая анимация === */
+.neon-text {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #ff005e,
+    0 0 10px #ff005e,
+    0 0 20px #ff005e,
+    0 0 40px #ff005e,
+    0 0 80px #ff005e;
+  animation: glow-neon 1.5s infinite alternate;
+}
+
+@keyframes glow-neon {
+  0% {
+    text-shadow: 
+      0 0 5px #ff005e,
+      0 0 10px #ff005e,
+      0 0 20px #ff005e,
+      0 0 40px #ff005e,
+      0 0 80px #ff005e;
+  }
+  100% {
+    text-shadow: 
+      0 0 10px #00d4ff,
+      0 0 20px #00d4ff,
+      0 0 40px #00d4ff,
+      0 0 80px #00d4ff,
+      0 0 160px #00d4ff;
+  }
+}
+
 /* Гирлянды */
 .lights-wrapper {
   display: flex;
@@ -191,60 +257,10 @@ body {
 .lights.left .light:nth-child(even) { transform: translateX(40px); }
 .lights.right .light:nth-child(even) { transform: translateX(-40px); }
 
-          /* === Снег === */
-.snowflakes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.snowflake {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.4em;
-  opacity: 0.6;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
-  animation: fall linear infinite;
-  top: -20px;
-}
-
-.snowflake:nth-child(1) { left: 5%; animation-duration: 8s; }
-.snowflake:nth-child(2) { left: 15%; animation-duration: 10s; }
-.snowflake:nth-child(3) { left: 25%; animation-duration: 9s; }
-.snowflake:nth-child(4) { left: 35%; animation-duration: 11s; }
-.snowflake:nth-child(5) { left: 45%; animation-duration: 8.5s; }
-.snowflake:nth-child(6) { left: 55%; animation-duration: 9.5s; }
-.snowflake:nth-child(7) { left: 65%; animation-duration: 10.5s; }
-.snowflake:nth-child(8) { left: 75%; animation-duration: 8.8s; }
-.snowflake:nth-child(9) { left: 85%; animation-duration: 9.2s; }
-.snowflake:nth-child(10) { left: 95%; animation-duration: 10.2s; }
-.snowflake:nth-child(11) { left: 10%; animation-duration: 9s; }
-.snowflake:nth-child(12) { left: 20%; animation-duration: 8.7s; }
-.snowflake:nth-child(13) { left: 30%; animation-duration: 10s; }
-.snowflake:nth-child(14) { left: 40%; animation-duration: 9.3s; }
-.snowflake:nth-child(15) { left: 50%; animation-duration: 8.9s; }
-.snowflake:nth-child(16) { left: 60%; animation-duration: 10.1s; }
-.snowflake:nth-child(17) { left: 70%; animation-duration: 9.6s; }
-.snowflake:nth-child(18) { left: 80%; animation-duration: 8.5s; }
-.snowflake:nth-child(19) { left: 90%; animation-duration: 9.8s; }
-.snowflake:nth-child(20) { left: 5%; animation-duration: 9.4s; }
-.snowflake:nth-child(21) { left: 95%; animation-duration: 3.5s; }
-.snowflake:nth-child(22) { left: 10%; animation-duration: 2.8s; }
-.snowflake:nth-child(23) { left: 7%; animation-duration: 5.4s; }
-
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(360deg);
-  }
-}
 
 /* === Навыки === */
 #skills {
-  background: linear-gradient(135deg, #8B4513, #CD853F);
+ background: linear-gradient(#00040d 0%, #2e5099 100%);
   color: white;
   position: relative;
 }
@@ -279,10 +295,10 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255,255,255,0.15);
   backdrop-filter: blur(8px);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(59, 59, 59, 0.4);
   transition: all 0.3s ease;
   cursor: default;
   position: relative;
@@ -303,9 +319,9 @@ body {
 
 .skill-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(255,255,255,0.4);
-  border: 2px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.35);
+  box-shadow: 0 8px 25px #009B95;
+  border: 2px solid #e0e0e0;
+  background: #009B95 0.25%;
 }
 
 .skill-card h3 {
@@ -343,7 +359,7 @@ body {
 
                /* === Опыт === */
 #experience {
-  background: linear-gradient(135deg, #8B4513, #CD853F);
+ background: linear-gradient( #2e5099 0%, #00040d 100%);
   color: white;
   position: relative;
 }
@@ -364,7 +380,7 @@ body {
   justify-content: space-between;
   width: 1100px;
   margin: 0 auto;
-  padding: 0 0.1rem;
+  padding: 5 ;
 }
 
 .experience-card {
@@ -640,3 +656,428 @@ body {
   to   { transform: translateX(-50%) rotate(360deg); }
 }
 
+/* === Обучение === */
+#education {
+background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
+  color: white;
+  position: relative;
+  padding: 0;
+}
+
+#education::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
+/* === Обучение — Timeline с точным соединением === */
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 2rem 3rem;
+}
+
+/* Вертикальная линия — слева, под две карточки */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5%; /* ← сдвинули правее (было 30px) */
+  height: 460px; /* под высоту двух карточек + отступы */
+  width: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+/* Кружок — на пересечении: вертикальная линия + горизонтальная */
+.timeline-dot {
+  position: absolute;
+  left: -16%; /* ← строго на вертикальной линии (60px - 2px) */
+  top: 46%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFD700;
+  border: 3px solid #fff;
+  
+  z-index: 2;
+}
+
+/* Горизонтальная линия от кружка к карточке */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -14%; /* начинается с вертикальной линии */
+  top: 50%;
+  width: calc(50% - 143px); /* до центра карточки */
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%);
+}
+
+/* Карточка — по центру экрана */
+.timeline-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 1.8rem;
+  border: 2px solid rgba(255,255,255,0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 190px;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+/* === 3D-декорация по краям === */
+.decoration {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+}
+
+.decoration.left {
+  left: 100px;
+}
+
+.decoration.right {
+  right: 250px;
+}
+
+.plane {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+}
+
+.plane.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  transform: rotateX(60deg) rotateZ(-30deg);
+  animation: rotate 20s infinite linear;
+}
+
+/* === КРУГ === */
+.circle {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  transform-style: preserve-3d;
+  border-radius: 100%;
+  box-shadow: 0 0 60px rgba(241, 180, 14, 0.8), inset 0 0 60px rgba(207, 160, 8, 0.6);
+}
+.circle::before,
+.circle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: rgba(220, 157, 20, 1);
+  border-radius: 100%;
+  box-shadow: 0 0 20px rgba(220, 157, 20, 1);
+}
+
+.circle::before {
+  transform: translate(-50%, -50%) translateZ(-90px);
+}
+
+.circle::after {
+  transform: translate(-50%, -50%) translateZ(90px);
+}
+
+/* === КВАДРАТ === */
+.square {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  transform-style: preserve-3d;
+  /* без border-radius → квадрат */
+  box-shadow: 0 0 60px rgba(1, 210, 172, 0.8), inset 0 0 60px rgba(5, 182, 143, 0.6);
+}
+
+.square::before,
+.square::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: rgba(2, 196, 118, 1);
+  border-radius: 100%;
+  box-shadow: 0 0 20px rgba(2, 196, 118, 1);
+}
+
+.square::before {
+  transform: translate(-50%, -50%) translateZ(-90px);
+}
+
+.square::after {
+  transform: translate(-50%, -50%) translateZ(90px);
+}
+
+/* Повороты */
+.circle:nth-child(1),
+.square:nth-child(1) { transform: rotateZ(72deg) rotateX(63.435deg); }
+.circle:nth-child(2),
+.square:nth-child(2) { transform: rotateZ(144deg) rotateX(63.435deg); }
+.circle:nth-child(3),
+.square:nth-child(3) { transform: rotateZ(216deg) rotateX(63.435deg); }
+.circle:nth-child(4),
+.square:nth-child(4) { transform: rotateZ(288deg) rotateX(63.435deg); }
+.circle:nth-child(5),
+.square:nth-child(5) { transform: rotateZ(360deg) rotateX(63.435deg); }
+
+@keyframes rotate {
+  0%   { transform: rotateX(0) rotateY(0) rotateZ(0); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+/* === Радужное свечение для карточек в #education === */
+#education .timeline-content {
+  position: relative;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 1.8rem;
+  border: 2px solid rgb(255,255,255);
+  color: white;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+/* Радужный градиент-свечение */
+#education .timeline-content::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 16px;
+  animation: glowing 20s linear infinite;
+}
+
+/* Основной фон (под свечением) */
+#education .timeline-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  z-index: -2;
+}
+
+/* Свечение при наведении */
+#education .timeline-content:hover::before {
+  opacity: 1;
+}
+
+/* Анимация радуги */
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* === Секция: Контакты === */
+#contact {
+  background: radial-gradient( #00040d 20%, #2e5099 100%);
+  color: #e0e0e0;
+  position: relative;
+  padding: 0;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+/* Основной контейнер: лево + право */
+.contact-content {
+  display: flex;
+  align-items: flex-start; /* ← форма поднята к заголовку */
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* === Левая часть === */
+.contact-left {
+  flex: 1;
+  min-width: 280px;
+  margin-top: 20%
+}
+
+#contact h2 {
+  margin: 3.2rem 0 0.8rem 0;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: white;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  #contact h2,
+  .subtitle {
+    text-align: center;
+  }
+}
+
+.contact-info {
+  margin-top: 0;
+}
+
+.info-item {
+  display: flex;
+  align-items: center; 
+  gap: 12px;
+  margin-bottom: 1.8rem;
+}
+
+.info-item .icon {
+  font-size: 1.8rem;
+  color: #FFD700;
+  flex-shrink: 0;
+}
+
+.info-item .text-block {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.2rem;
+}
+
+.info-item .text-block > * {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.info-item strong {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.info-item p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* === Правая часть: форма === */
+.form-right {
+  flex: 1;
+  min-width: 360px;
+  margin-top: 23%
+}
+
+.form-right input,
+.form-right textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-right input:focus,
+.form-right textarea:focus {
+  outline: none;
+  border-color: #FFD700;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.form-right textarea {
+  resize: vertical;
+}
+
+.send-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4A90E2, #9B5DE5);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
+}
+
+.send-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(74, 144, 226, 0.4);
+}
+
+.send-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
