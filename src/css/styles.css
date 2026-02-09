@@ -1081,3 +1081,133 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   transform: translateY(1px);
   box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
 }
+
+                    /* === Мини-игры === */
+#games {
+  background: radial-gradient(circle at bottom, #596ea9 0%, #0b0c15 100%);
+  color: white;
+  padding: 0;
+}
+
+.games-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.game-btn {
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #FFD700;
+}
+
+#game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+/* --- Общие стили для всех игр --- */
+#game-container h3 {
+  font-size: 1.5rem;
+  margin: 0.8rem 0 0.8rem;
+  text-align: center;
+}
+
+#game-container p,
+#game-container div:not(.games-menu) > * {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* === ЕДИНЫЙ СТИЛЬ ДЛЯ ВСЕХ КНОПОК В ИГРАХ === */
+.clicker-buttons,
+.adventure-buttons,
+.guess-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1rem 0; /* отступ вниз */
+  flex-wrap: wrap;
+}
+
+#clickBtn,
+#resetBtn,
+#genBtn,
+#clearBtn,
+#checkBtn,
+#resetBtnGuess {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 140px;
+  transition: transform 0.1s ease;
+}
+
+/* Синие кнопки */
+#clickBtn,
+#genBtn,
+#checkBtn {
+  background: linear-gradient(135deg, #4A90E2, #5a7fe0);
+  color: white;
+}
+
+/* Красные кнопки */
+#resetBtn,
+#clearBtn,
+#resetBtnGuess {
+  background: linear-gradient(135deg, #FF6B6B, #ff5252);
+  color: white;
+}
+
+/* --- Поле ввода --- */
+.guess-input-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+#guessInput {
+  padding: 14px 20px;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  text-align: center;
+  width: 200px;
+  max-width: 90%;
+}
+
+/* --- История приключений --- */
+#history {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+#history div {
+  margin-bottom: 0.7rem;
+}
+
+#hint, #gameResult {
+  min-height: 1.5rem;
+  margin: 0.8rem 0;
+  text-align: center;
+}

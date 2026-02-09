@@ -14,6 +14,7 @@
     <button class="nav-btn" onclick="showSection('experience')">Опыт</button>
     <button class="nav-btn" onclick="showSection('education')">Образование</button>
     <button class="nav-btn" onclick="showSection('contact')">Контакты</button>
+    <button class="nav-btn" onclick="showSection('games')">Мини-игры</button>
   </nav>
 
  <div class="snowflakes" aria-hidden="true"></div>
@@ -165,7 +166,7 @@
   </div>
     </section>
 
-<!-- === Секция: Обучение === -->
+<!-- === Обучение === -->
 <section id="education" class="section">
 
   <h2>Образование</h2>
@@ -258,6 +259,21 @@
       <button type="submit" class="send-btn">Отправить сообщение →</button>
     </div>
   </div>
+</section>
+
+<!-- === Мини-игры === -->
+<section id="games" class="section">
+  <h2>Мини-игры</h2>
+
+  <!-- Выбор игры -->
+  <div class="games-menu">
+    <button class="game-btn" onclick="loadGame('clicker')">Кликер</button>
+    <button class="game-btn" onclick="loadGame('adventure')">Генератор приключений</button>
+    <button class="game-btn" onclick="loadGame('guess')">Угадай число</button>
+  </div>
+
+  <!-- Контейнер для игры -->
+  <div id="game-container"></div>
 </section>
 
   </main>
