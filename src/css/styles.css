@@ -1373,7 +1373,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   width: 400px;
   height: 300px;
   margin: 0.5rem auto;
-  margin-left: 500px;
+  margin-left: 50px;
 }
 .maze-player {
   position: absolute;
