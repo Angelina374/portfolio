@@ -46,7 +46,7 @@ function createSnow() {
 // Запуск после загрузки
 document.addEventListener('DOMContentLoaded', createSnow);
 
-        // === Переключение игр ===
+      
 // === Вспомогательная функция: затемнение HEX-цвета ===
 function shadeColor(color, percent) {
   let R = parseInt(color.substring(1, 3), 16);
@@ -108,6 +108,43 @@ function loadGame(gameName) {
     `;
     initGuessGame();
   }
+  else if (gameName === 'reaction') {
+ container.innerHTML = `
+  <h3>Игра на скорость реакции</h3>
+ <div>Осталось времени: <span id="reactionTimer">30</span> сек</div>
+
+<div class="reaction-controls">
+  <div class="reaction-stats">
+    Нажатий: <span id="hits">0</span> | Среднее время: <span id="avgTime">—</span> мс
+  </div>
+  <button id="resetReaction" class="game-btn-red">Сбросить</button>
+</div>
+  <div id="reactionArea"></div>
+`;
+    initReactionGame();
+  }
+  else if (gameName === 'tic-tac-toe') {
+    container.innerHTML = `
+      <h3>Крестики-нолики</h3>
+   <div class="ttt-container">
+  <div id="tttStatus" class="ttt-element">Ходит игрок: X</div>
+  <div id="tttScore" class="ttt-element">Счёт: X — <span id="scoreX">0</span> | O — <span id="scoreO">0</span></div>
+  <div class="tic-tac-toe-grid" id="tttGrid"></div>
+  <button id="tttReset" class="game-btn-red">Новая игра</button>
+</div>
+    `;
+    initTicTacToe();
+  }
+ else if (gameName === 'maze') {
+  container.innerHTML = `
+    <h3>Лабиринт</h3>
+    <p>Управляйте зелёным кружком стрелками. Найдите красный выход!</p>
+    <div class="maze-container" id="mazeContainer"></div>
+    <div id="mazeTimer">Время: <span id="timeValue">0</span> сек</div>
+    <button id="mazeReset" class="game-btn-red">Начать заново</button>
+  `;
+  initMaze();
+}
 }
 
 // === Игра 1: Кликер с радужной анимацией ===
@@ -256,5 +293,280 @@ function initGuessGame() {
 
   resetBtn.onclick = () => {
     loadGame('guess'); // перезапуск с новым числом
+  };
+}
+
+// === Игра 4: Скорость реакции ===
+let reactionGame = null;
+
+function initReactionGame() {
+  const area = document.getElementById('reactionArea');
+  const timerEl = document.getElementById('reactionTimer');
+  const hitsEl = document.getElementById('hits');
+  const avgEl = document.getElementById('avgTime');
+  const resetBtn = document.getElementById('resetReaction');
+
+  let timeLeft = 30;
+  let hits = 0;
+  let totalReactionTime = 0;
+  let gameActive = true;
+  let buttonStartTime = 0;
+
+  function startTimer() {
+    const interval = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        gameActive = false;
+        area.innerHTML = '<p>Игра окончена!</p>';
+        if (hits > 0) {
+          avgEl.textContent = Math.round(totalReactionTime / hits);
+        }
+      }
+    }, 1000);
+  }
+
+  function showButton() {
+    if (!gameActive) return;
+    area.innerHTML = ''; 
+
+    const btn = document.createElement('button');
+    btn.id = 'reactionBtn';
+    btn.textContent = 'Нажми!';
+    
+    const maxX = area.offsetWidth - 120;
+    const maxY = area.offsetHeight - 60;
+    const left = Math.max(0, Math.random() * maxX);
+    const top = Math.max(0, Math.random() * maxY);
+
+    btn.style.left = left + 'px';
+    btn.style.top = top + 'px';
+
+    btn.onclick = () => {
+      const reactionTime = Date.now() - buttonStartTime;
+      hits++;
+      totalReactionTime += reactionTime;
+      hitsEl.textContent = hits;
+      area.innerHTML = '<p>Отлично! Ждите следующую кнопку...</p>';
+      
+      setTimeout(showButton, 1000 + Math.random() * 4000);
+    };
+
+    area.appendChild(btn);
+    buttonStartTime = Date.now();
+  }
+
+  resetBtn.onclick = () => {
+    loadGame('reaction');
+  };
+
+  startTimer();
+  setTimeout(showButton, 1000 + Math.random() * 4000);
+}
+
+// === Игра 5: Крестики-нолики ===
+function initTicTacToe() {
+  const grid = document.getElementById('tttGrid');
+  const statusEl = document.getElementById('tttStatus');
+  const resetBtn = document.getElementById('tttReset');
+  const scoreXEl = document.getElementById('scoreX');
+  const scoreOEl = document.getElementById('scoreO');
+
+  let board = Array(9).fill(null);
+  let currentPlayer = 'X';
+  let gameOver = false;
+
+  const scores = JSON.parse(localStorage.getItem('tttScores')) || { X: 0, O: 0 };
+
+  scoreXEl.textContent = scores.X;
+  scoreOEl.textContent = scores.O;
+
+  function renderBoard() {
+    grid.innerHTML = '';
+    for (let i = 0; i < 9; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'tic-tac-toe-cell';
+      cell.textContent = board[i] || '';
+      cell.onclick = () => makeMove(i);
+      grid.appendChild(cell);
+    }
+  }
+
+  function makeMove(index) {
+    if (board[index] || gameOver) return;
+    board[index] = currentPlayer;
+    if (checkWin()) {
+      gameOver = true;
+      statusEl.textContent = `Победил: ${currentPlayer}!`;
+      scores[currentPlayer]++;
+      localStorage.setItem('tttScores', JSON.stringify(scores));
+      scoreXEl.textContent = scores.X;
+      scoreOEl.textContent = scores.O;
+    } else if (board.every(cell => cell)) {
+      gameOver = true;
+      statusEl.textContent = 'Ничья!';
+    } else {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      statusEl.textContent = `Ходит игрок: ${currentPlayer}`;
+    }
+    renderBoard();
+  }
+
+  function checkWin() {
+    const winPatterns = [
+      [0,1,2],[3,4,5],[6,7,8], // rows
+      [0,3,6],[1,4,7],[2,5,8], // cols
+      [0,4,8],[2,4,6]          // diagonals
+    ];
+    return winPatterns.some(pattern =>
+      pattern.every(i => board[i] === currentPlayer)
+    );
+  }
+
+  resetBtn.onclick = () => {
+    board = Array(9).fill(null);
+    currentPlayer = 'X';
+    gameOver = false;
+    statusEl.textContent = 'Ходит: X';
+    renderBoard();
+  };
+
+  renderBoard();
+}
+
+// === Игра 6: Лабиринт ===
+function initMaze() {
+  const container = document.getElementById('mazeContainer');
+  const timerEl = document.getElementById('timeValue');
+  const resetBtn = document.getElementById('mazeReset');
+
+  container.innerHTML = '';
+
+  const layout = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,2,1,1,0,1,1,1,1,1,1,1,1,0],
+    [0,0,0,1,0,1,0,0,0,0,0,1,0,0],
+    [0,1,1,1,1,1,0,0,0,1,1,1,1,0],
+    [0,1,0,0,1,0,0,1,1,1,0,1,0,0],
+    [0,1,1,1,1,1,0,0,0,0,0,1,0,0],
+    [0,0,1,0,0,0,0,1,1,1,1,0,0,0],
+    [0,0,1,1,1,1,1,1,0,0,1,0,0,0],
+    [0,0,0,1,0,0,0,1,0,0,1,1,1,0],
+    [0,1,1,1,0,0,0,1,1,0,1,0,1,3],
+  ];
+
+  const rows = layout.length;
+  const cols = layout[0].length;
+  const cellSize = 32;
+
+  const grid = document.createElement('div');
+  grid.style.display = 'grid';
+  grid.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
+  grid.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+  grid.style.width = `${cols * cellSize}px`;
+  grid.style.height = `${rows * cellSize}px`;
+  grid.style.margin = '0 auto';
+  grid.style.border = '2px solid #333';
+  grid.style.borderRadius = '8px';
+  grid.style.overflow = 'hidden';
+
+  let playerRow = -1, playerCol = -1;
+  let exitRow = -1, exitCol = -1;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const cell = document.createElement('div');
+      cell.style.width = `${cellSize}px`;
+      cell.style.height = `${cellSize}px`;
+      cell.style.boxSizing = 'border-box';
+      cell.style.position = 'relative';
+
+      const val = layout[r][c];
+      if (val === 0) {
+        cell.style.backgroundColor = '#5c2187';
+        cell.style.border = '1px solid #2b2b2b';
+      } else {
+        cell.style.backgroundColor = '#0d1117';
+        cell.style.border = '1px solid #222';
+      }
+
+      if (val === 2) {
+        playerRow = r;
+        playerCol = c;
+      } else if (val === 3) {
+        exitRow = r;
+        exitCol = c;
+        const exitDot = document.createElement('div');
+        exitDot.style.position = 'absolute';
+        exitDot.style.width = '20px';
+        exitDot.style.height = '20px';
+        exitDot.style.background = '#FF5252';
+        exitDot.style.borderRadius = '4px';
+        exitDot.style.top = '5px';
+        exitDot.style.left = '5px';
+        cell.appendChild(exitDot);
+      }
+
+      grid.appendChild(cell);
+    }
+  }
+
+  container.appendChild(grid);
+
+  const playerDot = document.createElement('div');
+  playerDot.className = 'maze-player-dot';
+  playerDot.style.position = 'absolute';
+  playerDot.style.width = '20px';
+  playerDot.style.height = '20px';
+  playerDot.style.background = '#4CAF50';
+  playerDot.style.borderRadius = '50%';
+  playerDot.style.top = `${playerRow * cellSize + 5}px`;
+  playerDot.style.left = `${playerCol * cellSize + 5}px`;
+  playerDot.style.zIndex = '10';
+  grid.appendChild(playerDot);
+
+  // === Таймер ===
+  let startTime = Date.now();
+  let gameActive = true;
+  const updateTimer = () => {
+    if (!gameActive) return;
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    timerEl.textContent = elapsed;
+    requestAnimationFrame(updateTimer);
+  };
+  updateTimer();
+
+  // === Управление ===
+  function movePlayer(newRow, newCol) {
+    if (
+      newRow >= 0 && newRow < rows &&
+      newCol >= 0 && newCol < cols &&
+      layout[newRow][newCol] !== 0
+    ) {
+      playerRow = newRow;
+      playerCol = newCol;
+      playerDot.style.top = `${playerRow * cellSize + 5}px`;
+      playerDot.style.left = `${playerCol * cellSize + 5}px`;
+
+      if (playerRow === exitRow && playerCol === exitCol) {
+        gameActive = false;
+        alert(`🎉 Победа! Время: ${timerEl.textContent} секунд`);
+      }
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'ArrowUp': movePlayer(playerRow - 1, playerCol); break;
+      case 'ArrowDown': movePlayer(playerRow + 1, playerCol); break;
+      case 'ArrowLeft': movePlayer(playerRow, playerCol - 1); break;
+      case 'ArrowRight': movePlayer(playerRow, playerCol + 1); break;
+    }
+  });
+
+  // === Сброс ===
+  resetBtn.onclick = () => {
+    loadGame('maze'); // перезапуск
   };
 }
