@@ -97,7 +97,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1; /* ← КЛЮЧЕВОЕ ИЗМЕНЕНИЕ */
+  z-index: 1; 
 }
 
 .section.active {
@@ -207,7 +207,7 @@ body {
   }
 }
 
-/* Гирлянды */
+/* Гирлянды самодельные*/
 .lights-wrapper {
   display: flex;
   justify-content: space-between;
@@ -688,7 +688,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   content: '';
   position: absolute;
   top: 0;
-  left: -5%; /* ← сдвинули правее (было 30px) */
+  left: -5%; 
   height: 460px; /* под высоту двух карточек + отступы */
   width: 2px;
   background: rgba(255, 255, 255, 0.2);
@@ -702,14 +702,13 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
 /* Кружок — на пересечении: вертикальная линия + горизонтальная */
 .timeline-dot {
   position: absolute;
-  left: -16%; /* ← строго на вертикальной линии (60px - 2px) */
+  left: -16%;     /* прям на вертикальной линни */
   top: 46%;
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background: #FFD700;
   border: 3px solid #fff;
-  
   z-index: 2;
 }
 
@@ -1058,7 +1057,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   resize: vertical;
 }
 
-.send-btn {
+.send-btn {              /* кнопка отправки сообщения */
   width: 100%;
   padding: 18px;
   border: none;
@@ -1140,7 +1139,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   display: flex;
   justify-content: center;
   gap: 1.2rem;
-  margin: 1rem 0; /* отступ вниз */
+  margin: 1rem 0; 
   flex-wrap: wrap;
 }
 
@@ -1159,7 +1158,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   transition: transform 0.1s ease;
 }
 
-/* Синие кнопки */
+/* Синие кнопки */          /*кликать, сгенирировать и проверить число*/
 #clickBtn,
 #genBtn,
 #checkBtn {
@@ -1167,7 +1166,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   color: white;
 }
 
-/* Красные кнопки */
+/* Красные кнопки */          /*сбросить, очистить и начать заново*/
 #resetBtn,
 #clearBtn,
 #resetBtnGuess {
@@ -1210,4 +1209,215 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   min-height: 1.5rem;
   margin: 0.8rem 0;
   text-align: center;
+}
+                          /*практика 3 еще три игры*/
+                       /* === Скорость реакции === */
+#reactionBtn {
+  position: absolute;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #22e5ff, #11bfcf);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* === выделение области === */
+#reactionArea {
+  position: relative;
+  width: 1300px;
+  height: 240px;
+  margin: 1.5rem auto;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 215, 0, 0.5);
+  border-radius: 12px;
+  box-shadow: 
+    0 0 15px rgba(255, 215, 0, 0.3),
+    inset 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Кнопка "Сбросить" — красная, по центру (как в других играх) === */
+#resetReaction {
+  padding: 12px 24px;
+  position: relative;
+  left: 200px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 140px;
+  background: linear-gradient(135deg, #FF6B6B, #ff5252);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+#resetReaction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+}
+
+/* === Статистика — влево, ближе к области === */
+.reaction-stats {
+  position: relative;
+  left: 30px; 
+  margin: 1px ; /* уменьшаем отступ сверху */
+  font-size: 1.1rem;
+  color: #ddd;
+  width: 100%;
+  max-width: 700px;
+}
+
+.reaction-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+                  /* === Крестики-нолики === */
+/* === Игра: Крестики-нолики === */
+
+/* Контейнер для точного позиционирования */
+.ttt-container {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+/* Общие стили для текстовых элементов */
+.ttt-element {
+  position: absolute;
+  font-size: 1.1rem;
+  color: #ddd;
+  white-space: nowrap;
+}
+
+/* Кто ходит — слева (регулируйте left/top) */
+#tttStatus {
+  left: -50px;      /* ← сдвиг вправо: увеличьте значение (например, 10px) */
+  top: 0;       /* ← сдвиг вниз: увеличьте значение (например, 5px) */
+}
+
+/* Счёт — справа (регулируйте right/top) */
+#tttScore {
+  right: -70px;     /* ← сдвиг влево: увеличьте значение (например, 15px) */
+  top: 0;       /* ← сдвиг вниз: увеличьте значение (например, 5px) */
+}
+
+/* Сетка квадратов */
+.tic-tac-toe-grid {
+  position: absolute;
+  top: 50px;    /* ← уменьшите, чтобы поднять сетку выше (например, 45px) */
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 200px; 
+  height: 200px;
+}
+
+.tic-tac-toe-cell {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tic-tac-toe-cell:hover {
+  background: rgba(255, 215, 0, 0.15);
+}
+
+/* Кнопка "Новая игра" — красная */
+#tttReset {
+  position: absolute;
+  bottom: -325px; /*  чтобы поднять кнопку */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FF6B6B, #ff5252);
+  color: white;
+  cursor: pointer;
+  white-space: nowrap; 
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+#tttReset:hover {
+  transform: translate(-50%, -2px);
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+}
+
+/* === Лабиринт === */
+.maze-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: 0.5rem auto;
+  margin-left: 500px;
+}
+.maze-player {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #4CAF50;
+  border-radius: 50%;
+  transition: left 0.1s, top 0.1s;
+}
+.maze-exit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: #FF5252;
+}
+
+/* === Таймер лабиринта === */
+#mazeTimer {
+  position: absolute;
+  left: 1030px;      /* ← сдвиг вправо от левого края */
+  top: 510px;      /* ← сдвиг вниз от верха контейнера */
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+/* === Кнопка "Начать заново"=== */
+#mazeReset.game-btn-red {
+  position: absolute;
+  left: 1000px;     /* ← сдвиг вправо */
+  top: 550px;      /* ← сдвиг вниз */
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FF6B6B, #ff5252);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+#mazeReset.game-btn-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
 }
