@@ -1,0 +1,451 @@
+:root {
+    --rpg-bg: #1a1a1d;
+    --rpg-card: #2d2d30;
+    --rpg-text: #f0f0f0;
+    --rpg-gold: #ffd700;
+    --rpg-brown: #8b4513;
+    --rpg-green: #27ae60;
+    --rpg-red: #c0392b;
+    --rpg-border: 2px solid var(--rpg-brown);
+    --font-main: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: var(--rpg-bg);
+    color: var(--rpg-text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    min-height: 100vh;
+    max-width: 900px;           /* Максимальная ширина контента */
+    margin: 0 auto;             /* Центрирование */
+    box-sizing: border-box; 
+}
+
+h1, h2, h3 {                     /* заголовки всех уровней*/
+    color: var(--rpg-gold);
+    text-shadow: 1px 1px 2px #000;
+    margin-top: 0;
+}
+
+            /* Header верхняя чатсь страницы */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: var(--rpg-border);    /* Коричневая линия разделитель */
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.back-btn {                       /* Кнопка "назад в портфолио" */
+    display: inline-block;
+    color: var(--rpg-text);
+    text-decoration: none;                  /* Убираем подчеркивание ссылки */
+    border: 1px solid var(--rpg-text);       /* Рамка вокруг кнопки */
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: 0.3s;               /* Анимация при наведении */
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: var(--rpg-gold);
+    color: var(--rpg-bg);
+    border-color: var(--rpg-gold);
+}
+
+            /* Карточки секции */
+.card {
+    background: var(--rpg-card);
+    border: var(--rpg-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.card h2 {
+    border-bottom: 1px solid var(--rpg-brown);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+            /* Блок персонажа */
+.character-info {
+    display: flex;            /* расположение в ряд */
+    align-items: center;      /* выравнивание по вертикали */
+    gap: 20px;
+    flex-wrap: wrap;          /* перенос на нов.строку на моб */
+}
+
+.avatar-selector {
+    text-align: center;
+    min-width: 100px;
+}
+
+.avatar {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    display: block;
+    filter: drop-shadow(0 0 5px var(--rpg-gold));
+}
+
+.avatar-options {
+    display: flex;                  /* Кнопки аватаров в ряд */
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;                /* Перенос если не влезают */
+}
+
+.avatar-btn {
+    background: transparent;        /* Прозрачный фон кнопки */
+    border: 1px solid var(--rpg-brown);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.avatar-btn:hover, .avatar-btn.active {
+    background: var(--rpg-gold);
+    border-color: var(--rpg-gold);
+    transform: scale(1.1);
+}
+
+.stats {           /* занимает все оставшееся место */
+    flex: 1;
+    min-width: 250px;         /* мин.ширина на моб */
+}
+
+.name-input {                  /* поле ввода имени персонажа */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #1a1a1d;
+    border: 1px solid var(--rpg-brown);
+    color: var(--rpg-text);
+    font-family: var(--font-main);
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+                            /* Эффект при клике в поле ввода */
+.name-input:focus {
+    outline: none;                     /* убираем стандартную обводку браузера */
+    border-color: var(--rpg-gold);
+}
+
+.level-display {                    /* Блок уровня и XP */
+    display: flex;                         /* все идет в ряд */
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    align-items: center;
+}
+                         /* номер уровня */
+.level-value {
+    color: var(--rpg-gold);
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px var(--rpg-gold);
+}
+
+.xp-bar-container {            /* полоса уровня */
+    width: 100%;
+    height: 25px;
+    background: #000;
+    border: 1px solid var(--rpg-gold);
+    border-radius: 12px;
+    overflow: hidden;           /* обрезаем всё что вылезает */
+    margin-bottom: 5px;
+    box-shadow: inset 0 0 5px #000;       /* Внутренняя тень для глубины */
+}
+
+.xp-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rpg-brown), var(--rpg-gold));
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+    box-shadow: 0 0 10px var(--rpg-gold);
+}
+
+.xp-text {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+                        /* форма создания задачи */
+form {
+    display: flex;                    /* вертикал располож */
+    flex-direction: column;            /* элементы друг под другом */
+    gap: 12px;
+}
+                            /* Поля ввода */
+input[type="text"], 
+select {
+    padding: 12px;
+    background: #1a1a1d;
+    border: 1px solid var(--rpg-brown);
+    color: var(--rpg-text);
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, 
+select:focus {
+    outline: none;
+    border-color: var(--rpg-gold);
+    box-shadow: 0 0 5px var(--rpg-gold);
+}
+                                    /* Кнопка добавить задачу */
+.add-task-btn {
+    padding: 12px;
+    background: var(--rpg-brown);
+    color: var(--rpg-gold);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-task-btn:hover {
+    background: var(--rpg-gold);
+    color: var(--rpg-brown);
+    box-shadow: 0 0 10px var(--rpg-gold);
+}
+
+                               /* Списки задач */
+.tasks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {                         /* Отдельная задача в списке */
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #444;
+    border-left: 4px solid var(--rpg-brown);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.task-item:hover {
+    border-color: var(--rpg-gold);
+    background: rgba(0,0,0,0.4);
+}
+
+.task-item.completed {                   /* Стили для выполненной задачи */
+    opacity: 0.6;
+    border-left-color: var(--rpg-green);
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;           /* зачеркнутый текст */
+    color: #888;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;       /* Название и XP по краям */
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.task-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--rpg-gold);               /* Золотой цвет названия */
+}
+
+.task-xp {
+    color: var(--rpg-gold);
+    font-weight: bold;
+    background: rgba(0,0,0,0.5);          /* Темный фон для контраста */
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.task-desc { 
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 5px;
+    font-style: italic;         /* Курсив для описания */
+}
+
+.task-meta {
+    font-size: 0.8rem;        /* Мелкий текст мета-информации */
+    color: #888;
+    display: flex;
+    gap: 10px;
+}
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--rpg-green);       /* Зеленый цвет галочки */
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;              /* Крупная иконка корзины */
+    opacity: 0.5;
+    transition: 0.3s;
+    padding: 5px;
+}
+
+.delete-btn:hover {
+    opacity: 1;                 /* Полная видимость при наведении*/
+    color: var(--rpg-red);
+    transform: scale(1.2);
+}
+
+.no-tasks {                /* Сообщение нет задач */
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+}
+
+                    /* статистика */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));   /* Адаптивные колонки */
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.stat-item {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid #444;
+}
+
+.stat-label {
+    display: block;                 /* Каждый элемент с новой строки */
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    color: var(--rpg-gold);
+    font-weight: bold;
+}
+
+.reset-btn {                  /* Кнопка сброса прогресса */
+    background: var(--rpg-red);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-main);
+    transition: 0.3s;
+}
+
+.reset-btn:hover {
+    background: #e74c3c;
+    box-shadow: 0 0 10px var(--rpg-red);
+}
+
+/* Animations */
+@keyframes levelUpAnim {                    /* Анимация повышения уровня */
+    0% { transform: scale(1); box-shadow: 0 0 0 var(--rpg-gold); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px var(--rpg-gold); border-color: #fff; }
+    100% { transform: scale(1); box-shadow: 0 0 0 var(--rpg-gold); }
+}
+
+.level-up-animation {
+    animation: levelUpAnim 0.6s ease;
+    border-color: #fff;
+}
+
+@keyframes fadeIn {                     /* Анимация появления новой задачи */
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease;
+}
+
+                    /*Всплывающие уведомления*/
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s;
+    z-index: 1000;                             /* Поверх всех элементов */
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.notification.show {             /* Класс добавляется через JS для показа */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.success {
+    background: var(--rpg-green);
+    border-color: #2ecc71;
+}
+
+.notification.info {
+    background: var(--rpg-brown);
+    border-color: var(--rpg-gold);
+}
+
+                         /* футер страницы */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+    font-size: 0.8rem;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}

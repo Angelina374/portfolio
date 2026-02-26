@@ -24,6 +24,13 @@ body {
   padding: 8px 16px;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  display: flex;             /* Включает гибкую верстку */
+  flex-wrap: nowrap;         /* Запрещает перенос на новую строку */
+  gap: 10px;                 /* Расстояние между кнопками */
+  align-items: center;       /* Центрирование по вертикали */
+  max-width: 90vw;           /* Ограничение по ширине экрана */
+ 
 }
 
 .nav-btn {
@@ -36,6 +43,8 @@ body {
   cursor: pointer;
   border-radius: 20px;
   transition: all 0.2s;
+  white-space: nowrap;       /* Запрет переноса текста внутри кнопки */
+  flex-shrink: 0; 
 }
 
 .nav-btn:hover {
@@ -106,7 +115,7 @@ body {
 
 /* === Единый заголовок для всех секций === */
 .section > h2 {
-  margin-top: 11%; /* ← ключевое значение: расстояние от меню */
+  margin-top: 11%; /* расстояние от меню */
   margin-bottom: 2rem;
   font-size: 2.2rem;
   font-weight: 700;
@@ -467,7 +476,7 @@ body {
     top: auto;
     bottom: 0;
     margin: 0 0 -15px 0;
-    transform: scaleY(-1); /* Отзеркаливание по вертикали */
+    transform: scaleY(-1); /* Отзеркаливание */
   }
 
   .lightrope li {
@@ -564,6 +573,7 @@ body {
     0%, 100% { background: #f70094; box-shadow: 0px 4.66667px 24px 3px #f70094; }
     50% { background: rgba(247, 0, 148, 0.4); box-shadow: 0px 4.66667px 24px 3px rgba(247, 0, 148, 0.2); }
   }
+
            /* === Новогодняя ёлка === */
 .tree {
   position: absolute;
@@ -741,7 +751,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   max-width: 400px;
 }
 
-/* === 3D-декорация по краям === */
+       /* === 3D-декорация по краям === */
 .decoration {
   position: fixed;
   top: 50%;
@@ -815,7 +825,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   height: 250px;
   position: absolute;
   transform-style: preserve-3d;
-  /* без border-radius → квадрат */
+
   box-shadow: 0 0 60px rgba(1, 210, 172, 0.8), inset 0 0 60px rgba(5, 182, 143, 0.6);
 }
 
@@ -916,7 +926,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   100% { background-position: 0 0; }
 }
 
-/* === Секция: Контакты === */
+            /* === Секция: Контакты === */
 #contact {
   background: radial-gradient( #00040d 20%, #2e5099 100%);
   color: #e0e0e0;
@@ -935,10 +945,10 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   z-index: -1;
 }
 
-/* Основной контейнер: лево + право */
+/* Основной контейнер*/
 .contact-content {
   display: flex;
-  align-items: flex-start; /* ← форма поднята к заголовку */
+  align-items: flex-start; /* форма поднята к заголовку */
   gap: 4rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -1174,7 +1184,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   color: white;
 }
 
-/* --- Поле ввода --- */
+/* --- Поле ввода --- */         /*игра 2 угадай число*/
 .guess-input-wrapper {
   display: flex;
   justify-content: center;
@@ -1193,7 +1203,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   max-width: 90%;
 }
 
-/* --- История приключений --- */
+                    /* игра 3 генератор приключений */            
 #history {
   margin-top: 1rem;
   font-size: 0.95rem;
@@ -1211,7 +1221,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   text-align: center;
 }
                           /*практика 3 еще три игры*/
-                       /* === Скорость реакции === */
+                       /* === игра Скорость реакции === */
 #reactionBtn {
   position: absolute;
   padding: 10px 22px;
@@ -1242,7 +1252,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   justify-content: center;
 }
 
-/* === Кнопка "Сбросить" — красная, по центру (как в других играх) === */
+/* === Кнопка "Сбросить" красная, по центру (как в других играх) === */
 #resetReaction {
   padding: 12px 24px;
   position: relative;
@@ -1280,9 +1290,8 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   width: 100%;
   max-width: 600px;
 }
-
-                  /* === Крестики-нолики === */
-/* === Игра: Крестики-нолики === */
+ 
+                 /* === Игра Крестики-нолики === */
 
 /* Контейнер для точного позиционирования */
 .ttt-container {
@@ -1301,22 +1310,22 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   white-space: nowrap;
 }
 
-/* Кто ходит — слева (регулируйте left/top) */
+/* Кто ходит — слева */
 #tttStatus {
-  left: -50px;      /* ← сдвиг вправо: увеличьте значение (например, 10px) */
-  top: 0;       /* ← сдвиг вниз: увеличьте значение (например, 5px) */
+  left: -50px;      /* ← сдвиг вправо */
+  top: 0;       /* ← сдвиг вниз*/
 }
 
-/* Счёт — справа (регулируйте right/top) */
+/* Счёт — справа */
 #tttScore {
-  right: -70px;     /* ← сдвиг влево: увеличьте значение (например, 15px) */
-  top: 0;       /* ← сдвиг вниз: увеличьте значение (например, 5px) */
+  right: -70px;     /* ← сдвиг влево */
+  top: 0;       /* ← сдвиг вниз */
 }
 
 /* Сетка квадратов */
 .tic-tac-toe-grid {
   position: absolute;
-  top: 50px;    /* ← уменьшите, чтобы поднять сетку выше (например, 45px) */
+  top: 50px;    /* ← уменьшите, чтобы поднять сетку выше*/
   left: 50%;
   transform: translateX(-50%);
   display: grid;
@@ -1326,7 +1335,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   height: 200px;
 }
 
-.tic-tac-toe-cell {
+.tic-tac-toe-cell {         /*сами ячейки сетки */
   width: 70px;
   height: 70px;
   font-size: 2.2rem;
@@ -1367,7 +1376,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
 }
 
-/* === Лабиринт === */
+                /* === Лабиринт === */
 .maze-container {
   position: relative;
   width: 400px;
@@ -1375,7 +1384,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   margin: 0.5rem auto;
   margin-left: 50px;
 }
-.maze-player {
+.maze-player {               /*игрок круг*/
   position: absolute;
   width: 20px;
   height: 20px;
@@ -1383,7 +1392,7 @@ background: radial-gradient(circle at bottom, #2e5099 0%, #00040d 100%);
   border-radius: 50%;
   transition: left 0.1s, top 0.1s;
 }
-.maze-exit {
+.maze-exit {                  /* выход */
   position: absolute;
   bottom: 0;
   right: 0;
