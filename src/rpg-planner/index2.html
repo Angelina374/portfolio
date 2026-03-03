@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Планировщик задач</title>
+    <link rel="stylesheet" href="../css/style2.css">
+</head>
+<body>
+   <header>
+    <h1>⚔️ RPG Task Manager</h1>
+    <a href="../index.html" class="back-btn">← Назад в портфолио</a>
+</header>
+
+    <main>
+        <!-- Секция персонажа -->
+        <section id="character-section" class="card">
+            <h2>🧙‍♂️ Ваш персонаж</h2>
+            <div class="character-info">
+                <div class="avatar-selector">
+                    <div class="avatar" id="avatar">🧙‍♂️</div>
+                    <div class="avatar-options">
+                        <button class="avatar-btn" data-avatar="🧙">🧙‍♂️</button>
+                        <button class="avatar-btn" data-avatar="⚔️">⚔️</button>
+                        <button class="avatar-btn" data-avatar="🛡️">️🛡️</button>
+                        <button class="avatar-btn" data-avatar="🏹">🏹</button>
+                        <button class="avatar-btn" data-avatar="🔮">🔮</button>
+                    </div>
+                </div>
+                <div class="stats">
+                    <input type="text" id="character-name" placeholder="Введите имя героя" class="name-input">
+                    <div class="level-display">
+                        <span class="level-label">Уровень</span>
+                        <span id="level" class="level-value">1</span>
+                    </div>
+                    <div class="xp-bar-container">
+                        <div id="xp-bar" class="xp-bar"></div>
+                    </div>
+                    <div class="xp-text">
+                        <span id="current-xp">0</span> / <span id="needed-xp">100</span> XP
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция создания задачи -->
+        <section id="create-task-section" class="card">
+            <h2>📜 Новая задача</h2>
+            <form id="task-form">
+                <input type="text" id="task-title" placeholder="Название задачи" required>
+                <input type="text" id="task-description" placeholder="Описание (необязательно)">
+                <div class="difficulty-selector">
+                    <label>Сложность:</label>
+                    <select id="task-difficulty">
+                        <option value="10">🟢 Легкая (+10 XP)</option>
+                        <option value="25">🟡 Средняя (+25 XP)</option>
+                        <option value="50">🟠 Сложная (+50 XP)</option>
+                        <option value="100">🔴 Эпическая (+100 XP)</option>
+                    </select>
+                </div>
+                <button type="submit" class="add-task-btn">➕ Добавить задачу</button>
+            </form>
+        </section>
+
+        <!-- Секция активных задач -->
+        <section id="active-tasks-section" class="card">
+            <h2>⚡ Активные задачи</h2>
+            <ul id="active-tasks-list" class="tasks-list">
+                <!-- Задачи будут добавляться здесь -->
+            </ul>
+            <p id="no-tasks-message" class="no-tasks">Нет активных задач. Добавьте новую!</p>
+        </section>
+
+        <!-- Секция выполненных задач -->
+        <section id="completed-tasks-section" class="card">
+            <h2>✅ Выполненные задачи</h2>
+            <ul id="completed-tasks-list" class="tasks-list">
+                <!-- Выполненные задачи будут здесь -->
+            </ul>
+        </section>
+
+        <!-- Секция статистики -->
+        <section id="stats-section" class="card">
+            <h2>📊 Статистика</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Всего выполнено:</span>
+                    <span id="total-completed" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Всего опыта:</span>
+                    <span id="total-xp" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Дата создания:</span>
+                    <span id="created-date" class="stat-value">-</span>
+                </div>
+            </div>
+            <button id="reset-btn" class="reset-btn">🗑️ Сбросить прогресс</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>RPG Task Manager © 2026</p>
+    </footer>
+
+    <!-- Подключение JavaScript -->
+    <script src="../js/rpg-planner/storage.js"></script>
+    <script src="../js/rpg-planner/character.js"></script>
+    <script src="../js/rpg-planner/tasks.js"></script>
+    <script src="../js/rpg-planner/app.js"></script>
+</body>
+</html>
