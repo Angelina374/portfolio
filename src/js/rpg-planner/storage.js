@@ -1,7 +1,6 @@
-/* Модуль для работы с localStorage 
-сохранение загрузка и удаление данных*/
+/*localStorage сохранение загрузка и удаление данных*/
 
-const Storage = {              // Объект Storage — единая точка доступа к localStorage
+const Storage = {              // Объект Storage  единая точка доступа к localStorage
     save(key, data) {
         try {
             const jsonData = JSON.stringify(data);           // Преобразуем данные в JSON-строку

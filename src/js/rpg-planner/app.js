@@ -1,11 +1,8 @@
-/**
- * Главный файл приложения
- */
-
+//Главный файл приложения
 let character;
 let taskManager;
 
-const elements = {
+const elements = {                           //создание пустых переменых для хранения обьектов и задач 
     charNameInput: document.getElementById('character-name'),
     charLevel: document.getElementById('level'),
     charXpCurrent: document.getElementById('current-xp'),
@@ -30,57 +27,57 @@ const elements = {
     characterSection: document.getElementById('character-section')
 };
 
-function init() {
+function init() {                    //загружаем сохран. даные перса и задач
     character = Character.load();
     taskManager = TaskManager.load();
-    
+                                         //Заполняем поля формы значениями из загруженного персонажа
     elements.charNameInput.value = character.name;
     elements.avatarDisplay.textContent = character.avatar;
-    
+                                        //подсветка кнопки выбран. аватара как активную
     elements.avatarButtons.forEach(btn => {
         if (btn.dataset.avatar === character.avatar) {
             btn.classList.add('active');
         }
     });
-    
+                           //дата создания перса
     if (character.createdAt) {
         elements.createdDate.textContent = new Date(character.createdAt).toLocaleDateString();
     }
+                        //отрисовка даных на странице 
+    renderCharacter();               //обнов.уров. xp, полоса прогрес. 
+    renderTasks();                   //список задач
+    renderStats();                   // обнов. статистика
     
-    renderCharacter();
-    renderTasks();
-    renderStats();
-    
-    addEventListeners();
-    
+    addEventListeners();          //обработ. кликов и задач
+     // Логируем успешный запуск (видно в консоли F12)
     console.log('[App] Приложение инициализировано');
 }
 
-function renderCharacter() {
-    elements.charLevel.textContent = character.level;
+function renderCharacter() {          //функц. отображение даных
+    elements.charLevel.textContent = character.level;               // Обновляем текстовые значения
     elements.charXpCurrent.textContent = character.xp;
     elements.charXpNeeded.textContent = character.getXpForNextLevel();
-    
+                                        // Рассчитываем процент заполнения полосы XP
     const needed = character.getXpForNextLevel();
     const percent = Math.min(100, (character.xp / needed) * 100);
-    elements.xpBar.style.width = `${percent}%`;
+    elements.xpBar.style.width = `${percent}%`;  // Применяем ширину к полосе прогресса
     
-    character.save();
+    character.save(); //сохранение изменение прессонажа в localStorage
 }
 
-function renderTasks() {
-    const activeTasks = taskManager.getActiveTasks();
+function renderTasks() {                //Отрисовывает списки активных и выполненных задач
+    const activeTasks = taskManager.getActiveTasks();     // Получаем отсортированные списки задач от TaskManager
     const completedTasks = taskManager.getCompletedTasks();
     
-    elements.activeTasksList.innerHTML = '';
+    elements.activeTasksList.innerHTML = '';         // Очищаем текущее содержимое списков
     elements.completedTasksList.innerHTML = '';
     
-    if (activeTasks.length === 0) {
+    if (activeTasks.length === 0) {              // Показываем/скрываем сообщение "Нет задач"
         elements.noTasksMessage.style.display = 'block';
     } else {
         elements.noTasksMessage.style.display = 'none';
     }
-    
+                                 // Создаём HTML-элемент для каждой активной задачи и добавляем в список (и для выполненых)
     activeTasks.forEach(task => {
         elements.activeTasksList.appendChild(createTaskElement(task));
     });
@@ -117,52 +114,52 @@ function createTaskElement(task) {
     
     return li;
 }
-
+                            //Обновляет отображение статистики
 function renderStats() {
     elements.totalCompleted.textContent = taskManager.getTotalCompleted();
     elements.totalXp.textContent = character.totalXp;
 }
-
+                                
 function addEventListeners() {
-    elements.charNameInput.addEventListener('change', (e) => {
-        character.name = e.target.value;
-        character.save();
+    elements.charNameInput.addEventListener('change', (e) => {        //изменен имени перса
+        character.name = e.target.value;             //обнов имя в обьекте
+        character.save();           
     });
     
-    elements.avatarButtons.forEach(btn => {
+    elements.avatarButtons.forEach(btn => {       //выбор аватара
         btn.addEventListener('click', () => {
-            elements.avatarButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            character.avatar = btn.dataset.avatar;
+            elements.avatarButtons.forEach(b => b.classList.remove('active'));  //убираем актив у всех
+            btn.classList.add('active');               //добав актив нажатой кнопки
+            character.avatar = btn.dataset.avatar;        //обнов дан перса
             elements.avatarDisplay.textContent = character.avatar;
             character.save();
         });
     });
-    
+                                            //отправка формы(создание нов задачи)
     elements.taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+        e.preventDefault();                   // Отменяем стандартную перезагрузку страницы
         
-        const title = elements.taskTitleInput.value.trim();
+        const title = elements.taskTitleInput.value.trim();             // Получаем и очищаем значения полей
         const description = elements.taskDescInput.value.trim();
         const xp = parseInt(elements.taskDifficultySelect.value);
         const difficulty = elements.taskDifficultySelect.value;
         
-        if (!title) return;
+        if (!title) return;            // Не создаём задачу без названия
         
-        const task = new Task(title, description, difficulty, xp);
+        const task = new Task(title, description, difficulty, xp);     // Создаём новый объект задачи и добавляем в менеджер
         taskManager.addTask(task);
         
-        elements.taskForm.reset();
+        elements.taskForm.reset();    // Очищаем форму и перерисовываем список
         renderTasks();
     });
     
     elements.activeTasksList.addEventListener('click', handleTaskAction);
     elements.completedTasksList.addEventListener('click', handleTaskAction);
-    
+                                //Кнопка сброса прогресса
     elements.resetBtn.addEventListener('click', () => {
         if (confirm('⚠️ Вы уверены? Весь прогресс будет удален!')) {
-            Storage.clearAll();
-            location.reload();
+            Storage.clearAll();                // Удаляем данные из localStorage
+            location.reload();                 // Перезагружаем страницу
         }
     });
     
@@ -198,7 +195,7 @@ function handleTaskAction(e) {
         }
     }
 }
-
+                      //уведомления и эффекты
 function showLevelUpNotification(level) {
     elements.characterSection.classList.add('level-up-animation');
     
