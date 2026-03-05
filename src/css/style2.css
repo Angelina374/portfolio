@@ -112,7 +112,7 @@ header h1 {
     border-radius: 4px;
     transition: 0.2s;
 }
-
+ 
 .avatar-btn:hover, .avatar-btn.active {
     background: var(--rpg-gold);
     border-color: var(--rpg-gold);
