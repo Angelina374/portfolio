@@ -1,0 +1,196 @@
+:root {
+    --light-cell: #f0d9b5;
+    --dark-cell: #b58863;
+    --highlight: rgba(100, 255, 100, 0.5);
+    --capture: rgba(255, 100, 100, 0.5);
+    --selected: rgba(255, 255, 0, 0.5);
+    --check: rgba(255, 0, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.game-info {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.turn-indicator {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 2px solid #ffd700;
+}
+
+.btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    background: #ffd700;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+}
+
+/* Доска */
+.chess-board {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    border: 4px solid #8b4513;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Клетки */
+.cell {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.cell.light {
+    background-color: var(--light-cell);
+}
+
+.cell.dark {
+    background-color: var(--dark-cell);
+}
+
+/* Состояния клеток */
+.cell.selected {
+    background-color: var(--selected) !important;
+}
+
+.cell.highlight {
+    background-color: var(--highlight);
+}
+
+.cell.highlight::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 100, 0, 0.5);
+    border-radius: 50%;
+}
+
+.cell.capture {
+    background-color: var(--capture);
+}
+
+.cell.capture::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.cell.check {
+    background-color: var(--check);
+}
+
+/* Фигуры */
+.piece {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.piece:hover {
+    transform: scale(1.1);
+}
+
+.piece.white {
+    color: #fff;
+    text-shadow: 0 0 3px #000;
+}
+
+.piece.black {
+    color: #000;
+    text-shadow: 0 0 3px #fff;
+}
+
+/* Координаты */
+.coordinates {
+    position: absolute;
+    font-size: 10px;
+    color: rgba(46, 45, 45, 0.7);
+}
+
+.coordinates.file {
+    bottom: 2px;
+    right: 2px;
+}
+
+.coordinates.rank {
+    top: 2px;
+    left: 2px;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .chess-board {
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(8, 40px);
+    }
+    
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+footer {
+    margin-top: 30px;
+    color: #888;
+    font-size: 0.9rem;
+}

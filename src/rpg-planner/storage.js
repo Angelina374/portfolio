@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 /*localStorage сохранение загрузка и удаление данных*/
 
 const Storage = {              // Объект Storage  единая точка доступа к localStorage
-=======
-/* Модуль для работы с localStorage 
-сохранение загрузка и удаление данных*/
-
-const Storage = {              // Объект Storage — единая точка доступа к localStorage
->>>>>>> 41a63d8
     save(key, data) {
         try {
             const jsonData = JSON.stringify(data);           // Преобразуем данные в JSON-строку
